@@ -34,7 +34,7 @@
                         </div>
                         <div id="rutas" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href=""> Agregar</a>
+                                <li><a href="ruta_agregar.php"> Agregar</a>
                                 </li>
                                 <li><a href=""> Editar</a>
                                 </li>

@@ -24,7 +24,8 @@ include "componentes/navbar.php"
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
    
                         <div id="map2">
-                            <iframe src="https://www.google.com/maps/d/embed?mid=14go-2uM9f0I7ppfap5jMJdhsAhX84FOk" class="google-map-single sm-res-mg-t-30"></iframe>
+                            <!-- <iframe src="https://www.google.com/maps/d/embed?mid=14go-2uM9f0I7ppfap5jMJdhsAhX84FOk" class="google-map-single sm-res-mg-t-30"></iframe> -->
+                            <div id="map" class="google-map-single sm-res-mg-t-30"></div>
                         </div>
              
                 </div>
@@ -50,7 +51,15 @@ include "componentes/navbar.php"
     </div>
     <!-- Google Map area End-->
 
-
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -26.180108, lng: -58.186991},
+          zoom: 15
+        });
+      }
+    </script>
 <!-- Fin Insertar contenido -->
 
 <?php

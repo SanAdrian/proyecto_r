@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Geolocalización</title>
+
+    <style>
+    #mapa{
+        width: 700px;
+        height: 500px;
+    }
+
+    </style>
+</head>
+<body>
+    <h1>Mapa V3</h1>
+    <div id="mapa">
+            --MAPA DE GOOGLE--
+    </div>
+    <script type="text/javascript">
+
+var map = document.getElementById('mapa');    
+    
+/* getVurrenPosition: obtiene las cordenadas actual*/
+/* fn_mal: es el comportamiento en caso de que algo salga mal */
+/* fn_ok: es lo que hace el getCurrentPosition en caso de obtener las coordenadas */
+navigator.geolocation.getCurrentPosition(fn_ok, fn_mal);
+
+function fn_mal(){};
+
+function fn_ok(respuesta){
+    var lat = respuesta.coords.latitude;
+    var lon = respuesta.coords.longitude;
+/* esta respuesta en necesario convertirla a un objeto de google */
+/* para esto usamos LatLng */
+var gLatLng = new google.maps.LatLng(lat,lon);
+
+/*zoom: establece en zoom inicial del mapa*/
+/*center: establece el punto en cual el cual el mapa aparece centrado*/
+var objConfig = {
+    zoom: 17,
+    center: gLatLng,
+}
+
+/* con Map creamos el mapa necesita dos parametros */
+/* mapa: es donde se va a renderizar el mapa */
+/* objConfig: es un objeto con las configuaración del mapa*/
+var gMapa = new google.maps.Map(map,objConfig)
+}
+/* ------AGREGAR MARCADOR----- */
+/*.Marker necesita un parametro*/
+/*objConfigMarker: es un objeto con la configuracion del marcador*/
+var gMarker = new google.maps.Marker(objConfigMarker);
+var objConfigMarker = {
+    position: /* gLatLng *//* {lat: -26.143635, lng: -58.15061000000003} */  {lat: -26.185281, lng: -58.174383},   /* posicion del marcador */
+    map: map, /* mapa en el que se quiere mostrar el marcador */
+}
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCySv0nSZn3vyrRm0pVH-nCikzaaX8sQS0"
+    async defer></script>    
+</body>
+</html>

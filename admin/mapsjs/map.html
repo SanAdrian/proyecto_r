@@ -31,11 +31,11 @@ navigator.geolocation.getCurrentPosition(fn_ok, fn_mal);
 function fn_mal(){};
 
 function fn_ok(respuesta){
-    var lat = respuesta.coords.latitude;
-    var lon = respuesta.coords.longitude;
+    var lati = respuesta.coords.latitude;
+    var long = respuesta.coords.longitude;
 /* esta respuesta en necesario convertirla a un objeto de google */
 /* para esto usamos LatLng */
-var gLatLng = new google.maps.LatLng(lat,lon);
+var gLatLng = {lat: lati, lng: long}/* new google.maps.LatLng(lat,lon) */;
 
 /*zoom: establece en zoom inicial del mapa*/
 /*center: establece el punto en cual el cual el mapa aparece centrado*/

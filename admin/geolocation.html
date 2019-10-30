@@ -22,10 +22,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCySv0nSZn3vyrRm0pVH-nCikz
     <script>
 
             var divMap = document.getElementById(map);
-            navigator.geolocation.getCurrentPosition(fn_ok, fn_error);
-            function fn_error(){
-            
-            }
+            navigator.geolocation.getCurrentPosition(fn_ok);
             function fn_ok(respuesta){
                var lat = respuesta.coords.latitude;
                var lon = respuesta.coords.longitude;

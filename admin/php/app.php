@@ -7,9 +7,9 @@
   $result = mysqli_query($con, "SELECT * FROM marcadores");
 
   // Creamos una tabla para listar los datos 
-  echo "<div class='table-responsive'>";
+  echo "<div class='bsc-tbl'>";
 
-  echo "<table class='table'>
+  echo "<table class='table table-sc-ex'>
           <thead class='thead-dark'>
             <tr>
               <th scope='col'>Barrio</th>
@@ -24,7 +24,7 @@
   while ($row = mysqli_fetch_array($result)) {
       echo "<tr>";
       echo "<td scope='col'>" . $row['barrio_marker'] . "</td>";
-      echo "<td scope='col'>" . preg_replace('/\\\\u([\da-fA-F]{4})/', '&#x\1;', $row['direccion_marker']) . "</td>";
+      echo "<td scope='col'>" . $row['direccion_marker'] . "</td>";
       echo "<td scope='col'>" . $row['lat_marker'] . "</td>";
       echo "<td scope='col'>" . $row['lon_marker'] . "</td>";
       echo "<td scope='col'>" . $row['tipo'] . "</td>";

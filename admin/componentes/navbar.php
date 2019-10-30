@@ -18,7 +18,7 @@
                         </li>
                         <li><a data-toggle="tab" href="#yoreciclo"><i class="fa fa-recycle"></i> Yo Reciclo</a>
                         </li>
-                        <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> new</a>
+                        <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> Nuevo</a>
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">

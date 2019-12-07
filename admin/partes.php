@@ -1,1 +1,0 @@
-echo "<td scope='col'>" . preg_replace('/\\\\u([\da-fA-F]{4})/', '&#x\1;', $row['direccion_marker']) . "</td>";

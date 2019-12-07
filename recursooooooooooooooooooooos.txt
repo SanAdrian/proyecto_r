@@ -1,0 +1,4 @@
+API key:AIzaSyCySv0nSZn3vyrRm0pVH-nCikzaaX8sQS0
+coordenada centro ciudad de Formosa: -26.177798, -58.179822
+verde claro: rgb(139, 190, 34)
+verde oscuro: rgb(76, 144, 51)

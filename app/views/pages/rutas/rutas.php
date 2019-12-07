@@ -16,8 +16,8 @@ include_once URL_APP . '/views/custom/navbar.php';
     <!-- Columna principal -->
     <div class="col-md-9">
         <div class="container-notificaciones-usuario">
-            <h4>CONTENDORES</h4>
-            <p>INSERTAR TABLA DE CONTENEDORES <span class="badge badge-pill badge-primary"><?php echo $datos['cantidadUsuarios'] ?></span></p>
+            <h4>RUTAS</h4>
+            <p>INSERTAR TABLA DE RUTAS<!--  <span class="badge badge-pill badge-primary"><?php echo $datos['cantidadUsuarios'] ?></span></p> -->
             <hr>
             <!-- Mapa de Marcadores -->
             <div id="map" style="width:100%;height:400px;">
@@ -36,7 +36,7 @@ include_once URL_APP . '/views/custom/navbar.php';
             <!-- Tabla Contenedores -->
             <div class='table-responsive'>
 
-                <table class='table'>
+                <!-- <table class='table'>
                     <thead class='thead-green'>
                         <tr>
                             <th scope='col'>Barrio</th>
@@ -55,7 +55,7 @@ include_once URL_APP . '/views/custom/navbar.php';
                             </tr>
                         <?php endforeach ?>
                     </tbody>
-                </table>
+                </table> -->
             </div>
         </div>
     </div>

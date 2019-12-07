@@ -11,7 +11,7 @@ class Road extends Controller{
 
     }
 
-    public function yoReciclo()
+    public function rutas()
     {       
         $datosUsuario = $this->usuario->getUsuario($_SESSION['usuario']);
         $datosPerfil = $this->usuario->getPerfil($_SESSION['logueado']);

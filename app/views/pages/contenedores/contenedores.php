@@ -24,6 +24,8 @@ include_once URL_APP . '/views/custom/navbar.php';
             </div>
             <hr>
             <div class="center">
+            
+
                 <button class="btn-green">Agregar</button>
                 <form action="" method="POST" class="tipe-form form-inline my-2 my-lg-0">
                             <input type="text" name="buscar" class="form-style" placeholder="Buscar" />
@@ -35,7 +37,12 @@ include_once URL_APP . '/views/custom/navbar.php';
             <!-- Tabla Contenedores -->
             <div class='table-responsive'>
 
-                <table class='table'>
+                <div>
+                <!-- esta es a manera de prueba -->
+                <input id="buscar" type="text" placeholder="buscar">
+
+
+                <table id="filtrar" class='table'>
                     <thead class='thead-green'>
                         <tr>
                             <th scope='col'>Barrio</th>
@@ -55,7 +62,11 @@ include_once URL_APP . '/views/custom/navbar.php';
                         <?php endforeach ?>
                     </tbody>
                 </table>
-            </div>
+                
+                </div>
+
+            </div> <!-- fin del div tabla -->
+
         </div>
     </div>
 </div>
@@ -131,6 +142,44 @@ include_once URL_APP . '/views/custom/navbar.php';
 
     // Lanzamos la función 'initMap' para que muestre el Mapa con Los Marcadores y toda la configuración realizada 
     google.maps.event.addDomListener(window, 'load', initMap);
+
+
+
+    
+
+    /* filtro de busqueda */
+  /*   $(document).ready( function ()
+{
+    $( '#buscar' ).keyup( function() {
+        filtro( $( this ).val() );
+    } );
+
+    function filtro( value )
+    {
+        $( '#filtrar tbody>tr' ).each( function() {
+            let encontrar = 'false';
+            $( this ).each( function() {
+                if( $( this ).text().toLowerCase().indexOf( value.toLowerCase() ) >= 0 )
+                {
+                    encontrar = 'true';
+                }
+            } );
+            if( encontrar == 'true' )
+            {
+                $( this ).show();
+            }
+            else
+            {
+                $( this ).hide();
+            }
+        } );
+    }
+} ); */
+
+
+
+
+
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCySv0nSZn3vyrRm0pVH-nCikzaaX8sQS0&callback=initMap"></script>

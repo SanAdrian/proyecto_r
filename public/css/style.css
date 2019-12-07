@@ -1,0 +1,158 @@
+:root {
+    --main-color: rgb(76, 144, 51);
+}
+
+.links {
+    color: #5d5d5d
+}
+
+.links:hover {
+    text-decoration: none;
+    color: #5d5d5d
+}
+
+.big {
+    font-size: 1.2em;
+}
+
+.bg-green {
+    background-color: var(--main-color)
+}
+
+.btn-green {
+    outline: none;
+    background-color: rgb(139, 190, 34);
+    border: 0;
+    padding: 0.55rem;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.btn-green:hover {
+    background-color: rgb(76, 144, 51);
+    outline: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #F2F2F2
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-center {
+    height: 100vh;
+    width: 100%;
+    background-color: #ffffff
+}
+
+.container-content {
+    height: 600px;
+    width: 1000px;
+}
+
+.content-action {
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+}
+
+.content-action input {
+    width: 100%;
+    border-radius: 20px;
+    border: 0;
+    background-color: #f2f2f2;
+    height: 45px;
+    margin-bottom: 10px;
+    padding: 1rem;
+    outline: none;
+}
+
+.content-image {
+    height: 100%;
+    width: 50%;
+    animation-name: movelef;
+    animation-duration: 4s;
+}
+
+.content-image img{
+    width: 100%;
+}
+
+.contenido-link a {
+    text-decoration: none;
+}
+
+.notificacion-container {
+    display: flex;
+}
+
+.bg-notification {
+    background-color: rgb(255, 0, 0);
+    color: #ffffff;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    border-radius: 10px;
+    height: 20px;
+}
+
+.thead-green {
+    outline: none;
+    background-color: rgb(76, 144, 51);
+    border: 0;
+    padding: 0.55rem;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 1rem;
+}
+.btn-circle.btn-sm { 
+    width: 30px; 
+    height: 30px; 
+    padding: 6px 0px; 
+    border-radius: 15px; 
+    font-size: 8px; 
+    text-align: center; 
+} 
+.btn-circle.btn-md { 
+    width: 50px; 
+    height: 50px; 
+    padding: 7px 10px; 
+    border-radius: 25px; 
+    font-size: 10px; 
+    text-align: center; 
+} 
+.btn-circle.btn-xl { 
+    width: 70px; 
+    height: 70px; 
+    padding: 10px 16px; 
+    border-radius: 35px; 
+    font-size: 12px; 
+    text-align: center; 
+} 
+@keyframes movelef {
+    from {
+        margin-left: 100%;
+      }
+    
+      to {
+        margin-left: 0%;
+    
+      }
+}
+
+.icon{
+    color: #ffffff;
+}

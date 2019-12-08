@@ -45,6 +45,10 @@ body {
     background-color: #F2F2F2
 }
 
+.centrar{
+    margin: auto;
+}
+
 .center {
     display: flex;
     justify-content: center;

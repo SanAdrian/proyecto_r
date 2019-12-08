@@ -1,17 +1,16 @@
 <?php
 
-class News extends Controller{
+class ControllerName extends Controller{
 
 
     public function __construct()
     {
-        $this->usuario = $this->model('noticias');
         $this->usuario = $this->model('usuario');
         $this->publicaciones = $this->model('publicar');
 
     }
 
-    public function yoReciclo()
+    public function nameOpcion()
     {       
         $datosUsuario = $this->usuario->getUsuario($_SESSION['usuario']);
         $datosPerfil = $this->usuario->getPerfil($_SESSION['logueado']);
@@ -26,7 +25,7 @@ class News extends Controller{
                 'misNoticaciones' => $misNotificaciones,
                 'misMensajes' => $misMensajes,
             ];
-            $this->view('pages/yoreciclo/yoreciclo', $datosRed);
+            $this->view('pages/folder/file', $datosRed);
         } else {
             redirection('/home');
         }

@@ -22,6 +22,7 @@
 <script src="<?php echo URL_PROJECT ?>/js/demo/chart-pie-demo.js"></script>
 <script src="<?php echo URL_PROJECT?>/js/filtrar.js"></script>
 
+
 </body>
 
 </html>

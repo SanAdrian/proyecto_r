@@ -25,7 +25,6 @@ include_once URL_APP . '/views/custom/navbar.php';
 </div>
 
 <?php
-var_dump($datos);
 include_once URL_APP . '/views/custom/footer.php';
 
 ?>

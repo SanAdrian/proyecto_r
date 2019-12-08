@@ -121,9 +121,6 @@ include_once URL_APP . '/views/custom/navbar.php';
         </div>
     </div>
 
-
-
-
     <?php
 
     include_once URL_APP . '/views/custom/footer.php';

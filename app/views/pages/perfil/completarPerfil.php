@@ -3,7 +3,7 @@
 include_once URL_APP . '/views/custom/header.php';
 
 ?>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCySv0nSZn3vyrRm0pVH-nCikzaaX8sQS0"></script>
 
 <div class="completarPerfil">
     <div class="container">
@@ -16,7 +16,34 @@ include_once URL_APP . '/views/custom/header.php';
                     <input type="hidden" name="id_user" value="<?php echo $_SESSION['logueado'] ?>">
                     <div class="form-group">
                         <input type="text" name="nombre" class="form-control" placeholder="Nombre completo" required>
+                        <select name="tipoUser" class="form-control">
+                            <option value="0">Tipo de Usuario</option>
+                            <option value="1">Común</option>
+                            <option value="2">Reciclador</option>
+                        </select>
+                        <select name="tipoCentro" class="form-control">
+                            <option value="0">Tipo de reciclador</option>
+                            <option value="1">Papel/Carton</option>
+                            <option value="2">Plasticos</option>
+                            <option value="3">Metales</option>
+                            <option value="4">Vidrios</option>
+                            <option value="5">Orgánicos</option>
+                        </select>
+                        <br>
+                        <div class="center">
+                            <input type="button" value="Mi Ubicación" onclick="getMyPosition()" class="btn-green">
+                            <input type="button" value="   Mi Centro   " onclick="getMyCenterPosition()" class="btn-green">
+                        </div>
+                        <input type="hidden" name="myLat" placeholder="Latitud" id="myLat" class="form-control">
+                        <input type="hidden" name="myLng" placeholder="Longitud" id="myLng" class="form-control">
+                        <input type="hidden" name="myLatCenter" placeholder="Latitud" id="myLatCenter" class="form-control">
+                        <input type="hidden" name="myLngCenter" placeholder="Longitud" id="myLngCenter" class="form-control">
                     </div>
+                    <hr>
+                    <!-- Mapa de Marcadores -->
+                    <div id="mapa" style="width:100%;height:400px;">
+                    </div>
+                    <hr>
                     <div class="form-group">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="imagen" id="imagen" required>
@@ -29,6 +56,9 @@ include_once URL_APP . '/views/custom/header.php';
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    startMap();
+</script>
 
 <?php
 

@@ -17,16 +17,13 @@ class Home extends Controller
             $datosPerfil = $this->usuario->getPerfil($_SESSION['logueado']);
 
             $datosPublicaciones = $this->publicaciones->getPublicaciones();
-
             $verificarLike = $this->publicaciones->misLikes($_SESSION['logueado']);
-
             $comentarios = $this->publicaciones->getComentarios();
-
             $informacionComentarios = $this->publicaciones->getInformacionComentarios($comentarios);
-
             $misNotificaciones = $this->publicaciones->getNotificaciones($_SESSION['logueado']);
-
             $misMensajes = $this->publicaciones->getMensajes($_SESSION['logueado']);
+            $tiposUser = $this->usuario->getTypeUsers();
+            $tiposReciclador = $this->usuario->getTypeRecycler();
 
             if ($datosPerfil) {
                 $datosRed = [
@@ -42,7 +39,13 @@ class Home extends Controller
                 $this->view('pages/home', $datosRed);
 
             } else {
-                $this->view('pages/perfil/completarPerfil', $_SESSION['logueado']);
+                $datosRed = [
+                    'Idusuario' => $_SESSION['logueado'],
+                    'tiposUser' => $tiposUser,
+                    'tiposReciclador' => $tiposReciclador,
+                    
+                ];
+                $this->view('pages/perfil/completarPerfil', $datosRed);
             }
         } else {
             redirection('/home/login');
@@ -80,7 +83,7 @@ class Home extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $datosRegistro = [
-                'privilegio' => '2', 
+                'privilegio' => '1', 
                 'email' => trim($_POST['email']),//recive datos del formulario de registro
                 'usuario' => trim($_POST['usuario']),//recive datos del formulario de registro
                 'contrasena' => password_hash(trim($_POST['contrasena']), PASSWORD_DEFAULT)//recive datos del formulario de registro
@@ -116,6 +119,12 @@ class Home extends Controller
         $datos = [
             'idusuario' => trim($_POST['id_user']),
             'nombre' => trim($_POST['nombre']),
+            'tipoUser' =>trim($_POST['tipoUser']),
+            'mylat' =>trim($_POST['myLat']),
+            'mylng' =>trim($_POST['myLng']),
+            'tipoRecycler' =>trim($_POST['tipoCentro']),
+            'mylatCenter' =>trim($_POST['myLatCenter']),
+            'mylngCenter' =>trim($_POST['myLngCenter']),
             'ruta' => $rutaImagen
         ];
 

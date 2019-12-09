@@ -30,9 +30,24 @@
     align-self: center;
 }
 
+.btn-gray {
+    outline: none;
+    background-color: rgb(238, 238, 238);
+    border: 0;
+    padding: 0.55rem;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 1rem;
+    align-self: center;
+}
+
 .btn-green:hover {
     background-color: rgb(76, 144, 51);
     outline: none;
+}
+
+.btn-separate {
+    margin: 10px
 }
 
 body {
@@ -401,3 +416,8 @@ footer .copyright {
     align-items: center;
 
 } */
+
+.hiddenThis{
+    display: none;
+}
+

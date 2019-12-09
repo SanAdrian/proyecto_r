@@ -19,3 +19,14 @@ marker.setAnimation(google.maps.Animation.BOUNCE);
 }
 // Lanzamos la función 'initMap' para que muestre el Mapa con Los Marcadores y toda la configuración realizada 
 google.maps.event.addDomListener(window, 'load', initMap);
+
+
+
+myMarkerPosition.addListener('dblclick', toggleBounce);
+function toggleBounce() {
+    if (myMarkerPosition.getAnimation() !== null) {
+        myMarkerPosition.setAnimation(null);
+    } else {
+        myMarkerPosition.setAnimation(google.maps.Animation.BOUNCE);
+    }
+}

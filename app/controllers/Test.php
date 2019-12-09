@@ -25,6 +25,8 @@ class Test
             $cantidadUsuarios = $this->usuario->getCantidadUsuarios();
             $marcadores = $this->contenedor->getMarcadores();
             $infoMarkers = $this->contenedor->getInfoMarkers();
+            $tiposUser = $this->usuario->getTypeUsers();
+            $tiposReciclador = $this->usuario->getTypeRecycler();
 
 
             if ($datosPerfil) {
@@ -37,6 +39,8 @@ class Test
                     'cantidadUsuarios' => $cantidadUsuarios,
                     'marcadores' => $marcadores,
                     'infoMarkers' => $infoMarkers,
+                    'tiposUser' => $tiposUser,
+                    'tiposReciclador' => $tiposReciclador,
                 ];
                 $this->view('pages/test/test', $datosRed);
             } else {

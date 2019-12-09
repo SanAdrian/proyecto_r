@@ -66,7 +66,44 @@ include_once URL_APP . '/views/custom/navbar.php';
                 </div>
 
             </div> <!-- fin del div tabla -->
+<!-- Coso modal -->
+<button type="button" class="btn-green" data-toggle="modal" data-target="#myModal">Nueva Noticias</button>
 
+
+
+<div class="modal" id="myModal">
+    <div class="container">
+        <div class="container-perfil">
+            <h2 class="text-center">Agregar Noticia</h2>
+            <h6 class="text-center">Antes de continuar todos los campos</h6>
+            <hr>
+            <div class="content-completar-perfil center">
+                <form action="<?php echo URL_PROJECT ?>/news/addNew" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id_user" value="<?php echo $_SESSION['logueado'] ?>">
+                    <div class="form-group">
+                        <input type="text" name="tituloNoti" class="form-control" placeholder="Titulo" required>
+                        <input type="text" name="link" class="form-control" placeholder="URL de la noticia" required>
+                        <!-- <input type="textarea" name="descripcion" class="form-control" placeholder="Ingresa una descripción" required> -->
+                        <textarea name="descripcion" class="form-control" placeholder="Ingresa una descripción" required></textarea>
+                    </div>
+                    <div id="mapa" style="width:100%;height:300px;"></div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="imagen" id="imagen" required>
+                            <label class="custom-file-label" for="imagen">Seleccionar una foto</label>
+                        </div>
+                    </div>
+                    <button class="btn-green btn-block">Registrar Noticia</button>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">X</button>
+        </div>
+    </div>
+</div>
+
+<!-- fin coso modal -->
         </div>
     </div>
 </div>

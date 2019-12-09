@@ -30,14 +30,28 @@ class usuario
         return $this->db->register();
     }
 
-    public function verificarContrasena($datosUsuario , $contrasena)
+
+    public function getTypeUsers()
     {
-            if (password_verify($contrasena , $datosUsuario->contrasena)) {
-                return true;
-            } else {
-                return false;
-            }
+        $this->db->query('SELECT * FROM privilegios WHERE idPerfil > 1');
+        return $this->db->registers();
     }
+
+    public function getTypeRecycler()
+    {
+        $this->db->query('SELECT * FROM tiporeciclador');
+        return $this->db->registers();
+    }
+
+    public function verificarContrasena($datosUsuario, $contrasena)
+    {
+        if (password_verify($contrasena, $datosUsuario->contrasena)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     public function verificarUsuario($datosUsuario)
     {
@@ -53,7 +67,8 @@ class usuario
     /* INSERTA EL NUEVO USUARIO A LA BASE DE DATOS */
     public function register($datosUsuario)
     {
-        $this->db->query('INSERT INTO usuarios (idPrivilegio , correo , usuario , contrasena) VALUES (:privilegio , :correo , :usuario , :contrasena)');
+        $this->db->query(
+            'INSERT INTO usuarios (idPrivilegio , correo , usuario, contrasena) VALUES (:privilegio , :correo , :usuario , :contrasena)');
         $this->db->bind(':privilegio', $datosUsuario['privilegio']);
         $this->db->bind(':correo', $datosUsuario['email']);
         $this->db->bind(':usuario', $datosUsuario['usuario']);
@@ -68,10 +83,20 @@ class usuario
 
     public function insertarPerfil($datos)
     {
-        $this->db->query('INSERT INTO perfil (idUsuario	, fotoPerfil , nombreCompleto) VALUES (:id , :rutaFoto , :nombre)');
+        $this->db->query('INSERT INTO perfil (idUsuario	, myLat , myLng , fotoPerfil , nombreCompleto)
+        VALUES (:id , :myLat , :myLng , :rutaFoto , :nombre);
+        INSERT INTO centroreciclaje(idUser , typeRecycler , latCoords , lngCoords)
+        VALUES (:id , :tipoRecycler , :myLatCenter , :myLngCenter);
+        UPDATE `usuarios` SET `idPrivilegio`= :tipoUser WHERE `idusuario` = :id');
         $this->db->bind(':id', $datos['idusuario']);
         $this->db->bind(':nombre', $datos['nombre']);
         $this->db->bind(':rutaFoto', $datos['ruta']);
+        $this->db->bind(':myLat', $datos['mylat']);
+        $this->db->bind(':myLng', $datos['mylng']);
+        $this->db->bind(':tipoRecycler', $datos['tipoRecycler']);
+        $this->db->bind(':myLatCenter', $datos['mylatCenter']);
+        $this->db->bind(':myLngCenter', $datos['mylngCenter']);
+        $this->db->bind(':tipoUser', $datos['tipoUser']);
 
         if ($this->db->execute()) {
             return true;
@@ -89,7 +114,7 @@ class usuario
 
     public function getCantidadUsuarios()
     {
-        $this->db->query('SELECT idusuario FROM usuarios'); 
+        $this->db->query('SELECT idusuario FROM usuarios');
         $this->db->execute();
         return $this->db->rowCount();
     }
@@ -99,7 +124,7 @@ class usuario
         $this->db->query('SELECT U.usuario , P.fotoPerfil , P.nombreCompleto FROM usuarios U
         INNER JOIN perfil P ON P.idUsuario = U.idusuario
         WHERE U.usuario LIKE :buscar ');
-        $this->db->bind(':buscar' , $busqueda);
+        $this->db->bind(':buscar', $busqueda);
         return $this->db->registers();
     }
 }

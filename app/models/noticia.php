@@ -28,5 +28,11 @@ class noticia
         }
     }
 
+    public function getNoticias()
+    {
+        $this->db->query('SELECT * FROM noticias ORDER BY dateNoti desc');
+        return $this->db->registers();
+    }
+
 
 }

@@ -57,10 +57,10 @@ include_once URL_APP . '/views/custom/navbar.php';
                                     </select>
                                 </div>
                                 <!-- Input Ocultos para guardar coordenadas -->
-                                <input type="text" name="startLat" placeholder="Latitud" id="startLat" class="form-control" required>
-                                <input type="text" name="startLng" placeholder="Longitud" id="startLng" class="form-control" required>
-                                <input type="text" name="endLat" placeholder="Latitud" id="endLat" class="form-control" required>
-                                <input type="text" name="endLng" placeholder="Longitud" id="endLng" class="form-control" required>
+                                <input type="hidden" name="startLat" placeholder="Latitud" id="startLat" class="form-control" required>
+                                <input type="hidden" name="startLng" placeholder="Longitud" id="startLng" class="form-control" required>
+                                <input type="hidden" name="endLat" placeholder="Latitud" id="endLat" class="form-control" required>
+                                <input type="hidden" name="endLng" placeholder="Longitud" id="endLng" class="form-control" required>
                                 <!-- Boton Start y Siguiente -->
                                 <div class="center">
                                         <input type="button" value="Punto de Inicio" onclick="startPoint()" class="btn-green btn-separate" id="btnStart">
@@ -73,7 +73,7 @@ include_once URL_APP . '/views/custom/navbar.php';
                             </form>
                         </div>
                         <hr>
-                        <div class="center">
+<!--                         <div class="center">
                             <button class="btn-green">Agregar</button>
                             <form action="" method="POST" class="tipe-form form-inline my-2 my-lg-0">
                                 <input type="text" name="buscar" class="form-style" placeholder="Buscar" />
@@ -81,7 +81,7 @@ include_once URL_APP . '/views/custom/navbar.php';
                                     <i class="fas fa-search"></i>
                                 </button>
                             </form>
-                        </div>
+                        </div> -->
                         <!-- Tabla Contenedores -->
                         <div class='table-responsive'>
 

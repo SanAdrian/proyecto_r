@@ -51,7 +51,7 @@ include_once URL_APP . '/views/custom/navbar.php';
                         <div class="container-usuario-publicar">
                             <a href="<?php echo URL_PROJECT ?>/perfil/<?php echo $datos['usuario']->usuario ?>"><img src="<?php echo URL_PROJECT . '/' . $datos['perfil']->fotoPerfil ?>" class="image-border " alt=""></a>
                             <form action="<?php echo URL_PROJECT ?>/publicaciones/publicar/<?php echo $datos['usuario']->idusuario ?>" method="POST" enctype="multipart/form-data" class="form-publicar ml-2">
-                                <textarea name="contenido" id="contenido" class="published mb-0" name="post" placeholder="Que estas pensando?" required></textarea>
+                                <textarea name="contenido" id="contenido" class="published mb-0" name="post" placeholder="¿Qué desea publicar?" required></textarea>
                                 <div class="image-upload-file">
                                     <div class="upload-photo">
                                         <img src="<?php echo URL_PROJECT ?>/img/image.png" alt="" class="image-public">

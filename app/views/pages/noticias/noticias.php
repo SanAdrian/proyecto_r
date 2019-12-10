@@ -25,6 +25,37 @@ include_once URL_APP . '/views/custom/navbar.php';
             <hr>
             <button type="button" class="btn-green" data-toggle="modal" data-target="#myModal">Nueva Noticias</button>
 
+            <!-- Coso Noticias -->
+            <div class="album py-5 bg-light">
+                <div class="container">
+                    <div class="row">
+                        <!-- Noticias -->
+                        <?php foreach ($datos['noticias'] as $noticia) : ?>
+                            <div class="col-md-4">
+                                <div class="card mb-4 shadow-sm">
+                                    <img src="<?php echo URL_PROJECT ?>/<?php echo $noticia->imagen ?>" alt="" width="100%" height="150px">
+                                    <div id="truncar">
+                                        <div class="card-body">
+                                            <p class="card-text"><?php echo $noticia->descripcion ?></p>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a class="btn btn-sm btn-outline-secondary" target="_blank" href="<?php echo $noticia->link ?>">Ver</a>
+                                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                                            </div>
+                                            <small class="text-muted"><?php echo fecha($noticia->dateNoti) ?></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            </div>
 
 
             <div class="modal" id="myModal">
@@ -72,4 +103,18 @@ include_once URL_APP . '/views/custom/navbar.php';
 
 <?php
 
+
+function fecha ( $fecha ) {
+    # strtotime = convierte una cadena de texto a time;
+    $timestamp = strtotime( $fecha );
+    $meses = [ 'Entero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre', 'Octubre','Noviembre','Diciembre' ];
+    $dia = date( 'd', $timestamp ); # con esto se obtiene los días;
+    $mes = date( 'm', $timestamp ) - 1;
+    $year = date( 'Y', $timestamp );
+
+    $fecha = $dia.' de '.$meses[$mes].' del '.$year;
+    return $fecha;
+}
+
 include_once URL_APP . '/views/custom/footer.php';
+?>

@@ -25,7 +25,7 @@ function markerMyPosition() { //al hacer click en el boton "Mi Ubicación" crea 
                     map: mapa,
                     animation: google.maps.Animation.DROP,
                     draggable: true,
-                    icon: 'http://localhost:/proyecto_r/public/img/icons/myHome.png'
+                    icon: 'http://localhost:8080/proyecto_r/public/img/icons/myHome.png'
                 });
             };
             mapa.setZoom(17, { animate: true });
@@ -76,7 +76,7 @@ function changeIconRecycler(value) {
 
 /*CENTRO DE RECICLAJE */
 function markerMyCenterPosition() {
-    getMyPosition('#myLatCenter', '#myLngCenter', '#btnMiCentro', mapa, 'http://localhost:/proyecto_r/public/img/icons/recycle/black.png')
+    getMyPosition('#myLatCenter', '#myLngCenter', '#btnMiCentro', mapa, 'http://localhost:8080/proyecto_r/public/img/icons/recycle/black.png')
 
 
 };
@@ -95,7 +95,7 @@ function newContainer() {
                 map: mapa,
                 animation: google.maps.Animation.DROP,
                 draggable: true,
-                icon: 'http://localhost:/proyecto_r/public/img/icons/container/black.png'
+                icon: 'http://localhost:8080/proyecto_r/public/img/icons/container/black.png'
             });
         };
         mapa.setZoom(17, { animate: true });
@@ -145,7 +145,7 @@ function startPoint() {
                 map: mapa,
                 animation: google.maps.Animation.DROP,
                 draggable: true,
-                icon: 'http://localhost:/proyecto_r/public/img/icons/ruta/start.png'
+                icon: 'http://localhost:8080/proyecto_r/public/img/icons/ruta/start.png'
             });
         };
         mapa.setZoom(17, { animate: true });
@@ -174,7 +174,7 @@ function endPoint() {
                 map: mapa,
                 animation: google.maps.Animation.DROP,
                 draggable: true,
-                icon: 'http://localhost:/proyecto_r/public/img/icons/ruta/finish.png'
+                icon: 'http://localhost:8080/proyecto_r/public/img/icons/ruta/finish.png'
             });
         };
         mapa.setZoom(17, { animate: true });
@@ -222,7 +222,7 @@ function changeIconContainer(value) {
 * @typeIcon: tipo de icon puede ser 'container' o 'recycle'
 */
 function changeIcon(value, marker, typeIcon) {
-    var iconBase = 'http://localhost:/proyecto_r/public/img/icons/' + typeIcon + '/';
+    var iconBase = 'http://localhost:8080/proyecto_r/public/img/icons/' + typeIcon + '/';
     if (value == 1) {
         marker.setIcon(iconBase + 'paper.png')
     } else

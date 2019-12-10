@@ -22,16 +22,16 @@ include_once URL_APP . '/views/custom/navbar.php';
     <!-- Columna principal -->
     <div class="col-md-9">
         <div class="container-notificaciones-usuario">
-            <h4>CONTENDORES</h4>
-            <p>INSERTAR TABLA DE CONTENEDORES <span class="badge badge-pill badge-primary"><?php echo $datos['cantidadUsuarios'] ?></span></p>
+            <h4>CENTROS DE RECICLAJE</h4>
+            <p></p>
             <hr>
             <!-- Mapa de Marcadores -->
             <div id="map" style="width:100%;height:400px;">
             </div>
             <hr>
             <div class="center">
-                <!-- BOTON AGREGAR CONTENEDOR -->
-                <button type="button" class="btn-green" data-toggle="modal" data-target="#myModal">Nuevo Contenedor</button>
+                <!-- BOTON AGREGAR CCENTRO -->
+                <button type="button" class="btn-green" data-toggle="modal" data-target="#myModal">Agregar Centro</button>
                 <!--                 <form action="" method="POST" class="tipe-form form-inline my-2 my-lg-0">
                     <input type="text" name="buscar" class="form-style" placeholder="Buscar" />
                     <button class="btn-form" type="submit">
@@ -51,19 +51,19 @@ include_once URL_APP . '/views/custom/navbar.php';
                         <thead class='thead-green'>
                             <tr>
                                 <!-- <th scope='col'>IdCont</th> -->
-                                <th scope='col'>Barrio</th>
-                                <th scope='col'>Dirección</th>
+                                <!-- <th scope='col'>Barrio</th> -->
+                                <th scope='col'>Propietario</th>
                                 <th scope='col'>Tipo</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            <?php foreach ($datos['allContenedores'] as $contendores) : ?>
+                            <?php foreach ($datos['allCentros'] as $centro) : ?>
                                 <tr>
-                                    <!-- <td scope='col'> <?php echo $contendores->idCont ?> </td> -->
-                                    <td scope='col'> <?php echo $contendores->barrio ?> </td>
-                                    <td scope='col'> <?php echo $contendores->direccionCont ?> </td>
-                                    <td scope='col'> <?php echo $contendores->nombreTipoR ?> </td>
+                                    <!-- <td scope='col'> <?php /* echo $contendores->idCont */ ?> </td> -->
+                                    <!-- <td scope='col'> <?php /* echo $centro->barrio */ ?> </td> -->
+                                    <td scope='col'> <?php echo $centro->nombreCompleto ?> </td>
+                                    <td scope='col'> <?php echo $centro->tipoResiclador ?> </td>
 
                                 </tr>
                             <?php endforeach ?>
@@ -77,7 +77,7 @@ include_once URL_APP . '/views/custom/navbar.php';
             <div class="modal" id="myModal">
                 <div class="container">
                     <div class="container-perfil">
-                        <h2 class="text-center">Agregar Contenedor</h2>
+                        <h2 class="text-center">Agregar Centro de Reciclaje</h2>
                         <h6 class="text-center">Antes de guardar complete todos los campos</h6>
                         <hr>
                         <div class="content-completar-perfil center">
@@ -95,8 +95,8 @@ include_once URL_APP . '/views/custom/navbar.php';
                                             <option value="<?php echo $barrios->idBarrio ?>"><?php echo $barrios->barrio ?></option>
                                         <?php endforeach ?>
                                     </select><br>
-                                    <!-- Dirección Contendor -->
-                                    <input type="text" name="addressCont" class="form-control" placeholder="Dirección" required><br>
+                                    <!-- Dirección Centro -->
+                                   <!--  <input type="text" name="addressCont" class="form-control" placeholder="Dirección" required><br> -->
                                     <!-- Select tipo contenedor -->
                                     <select name="tipoCont" class="form-control" onchange="changeIconContainer(this.value)" id="selectTC">
                                         <option value="0">Tipo de contenedor</option>
@@ -111,7 +111,7 @@ include_once URL_APP . '/views/custom/navbar.php';
                                 <input type="hidden" name="containerLat" placeholder="Latitud" id="containerLat" class="form-control" required>
                                 <input type="hidden" name="containerLng" placeholder="Longitud" id="containerLng" class="form-control" required>
                                 <div id="mapa" style="width:100%;height:300px;"></div><br>
-                                <!-- Boton Guardar Contenedor -->
+                                <!-- Boton Guardar Centro -->
                                 <button class="btn-green btn-block">Guardar</button>
                             </form>
                         </div>
@@ -145,23 +145,23 @@ include_once URL_APP . '/views/custom/navbar.php';
         mapCont.setTilt(50);
 
         // Creamos la ventana de información con los marcadores 
-        var mostrarMarcadores = new google.maps.InfoWindow(),
-            marcadores, i;
+        /* var mostrarMarcadores = new google.maps.InfoWindow(),
+            marcadores, i; */
         <?php foreach ($datos['marcadores'] as $marcadores) : ?>
-            var position = new google.maps.LatLng(<?php echo $marcadores->latCont ?>, <?php echo $marcadores->lngCont ?>);
+            var position = new google.maps.LatLng(<?php echo $marcadores->latCoords ?>, <?php echo $marcadores->lngCoords ?>);
             bounds.extend(position);
             marker = new google.maps.Marker({
                 position: position,
                 map: mapCont,
-                title: <?php echo $marcadores->idCont ?>
+                title: <?php echo $marcadores->IdCentroReciclaje ?>
             });
-
+            console.log(position)
             mapCont.fitBounds(bounds);
 
 
 
-            var iconBase = 'http://localhost:8080/proyecto_r/public/img/icons/container/';
-            var value = <?php echo $marcadores->tipoCont ?>;
+            var iconBase = 'http://localhost:8080/proyecto_r/public/img/icons/recycle/';
+            var value = <?php echo $marcadores->typeRecycler ?>;
 
             if (value == 1) {
                 marker.setIcon(iconBase + 'paper.png')
@@ -178,7 +178,7 @@ include_once URL_APP . '/views/custom/navbar.php';
             if (value == 5) {
                 marker.setIcon(iconBase + 'white.png')
             }
-            console.log('tipo contenedor: ' + value)
+            console.log('tipo centro: ' + value)
 
             google.maps.event.addListener(marker, 'click', function() {
                 mapCont.setZoom(17);

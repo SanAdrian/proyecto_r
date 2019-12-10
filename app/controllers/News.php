@@ -17,6 +17,7 @@ class News extends Controller{
         $datosPerfil = $this->usuario->getPerfil($_SESSION['logueado']);
         $misNotificaciones = $this->publicaciones->getNotificaciones($_SESSION['logueado']);
         $misMensajes = $this->publicaciones->getMensajes($_SESSION['logueado']);
+        $noticias = $this->noticia->getNoticias();
 
 
         if ($datosPerfil) {
@@ -25,6 +26,7 @@ class News extends Controller{
                 'perfil' => $datosPerfil,
                 'misNoticaciones' => $misNotificaciones,
                 'misMensajes' => $misMensajes,
+                'noticias' => $noticias,
             ];
             $this->view('pages/noticias/noticias', $datosRed);
         } else {

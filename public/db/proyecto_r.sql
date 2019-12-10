@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-12-2019 a las 05:52:59
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Tiempo de generación: 10-12-2019 a las 20:58:11
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -140,7 +138,7 @@ CREATE TABLE `centroreciclaje` (
   `typeRecycler` int(11) NOT NULL,
   `latCoords` float NOT NULL,
   `lngCoords` float NOT NULL,
-  `timeCreate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timeCreate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -148,7 +146,11 @@ CREATE TABLE `centroreciclaje` (
 --
 
 INSERT INTO `centroreciclaje` (`IdCentroReciclaje`, `idUser`, `typeRecycler`, `latCoords`, `lngCoords`, `timeCreate`) VALUES
-(1, 8, 1, -26.1458, -58.1506, '2019-12-09 05:30:53');
+(1, 8, 1, -26.1458, -58.1506, '2019-12-09 05:30:53'),
+(2, 9, 2, -26.0809, -58.2749, '2019-12-10 12:57:21'),
+(3, 10, 4, -26.081, -58.275, '2019-12-10 18:38:58'),
+(4, 11, 3, -26.0823, -58.2771, '2019-12-10 19:17:32'),
+(5, 12, 3, -26.0808, -58.2744, '2019-12-10 19:38:30');
 
 -- --------------------------------------------------------
 
@@ -161,7 +163,7 @@ CREATE TABLE `comentarios` (
   `idPublicacion` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
   `contenidoComentario` longtext NOT NULL,
-  `fechaComentario` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `fechaComentario` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -185,14 +187,10 @@ CREATE TABLE `contenedores` (
 
 INSERT INTO `contenedores` (`idCont`, `barrioCont`, `direccionCont`, `latCont`, `lngCont`, `tipoCont`) VALUES
 (1, 41, 'Beata Nazaria Ignacia March', -26.1315, -58.1736, 1),
-(12, 1, 'asd', -26.1755, -58.1932, 1),
-(14, 3, 'AL lado del vecino', -26.1652, -58.1829, 1),
 (15, 25, 'cerca de casa', -26.1432, -58.1572, 3),
-(16, 4, 'Ahí nomas del paraiso de los niños', -26.1872, -58.2032, 2),
 (17, 3, 'AV. Gendarmeria Nacional - Emilio Senes', -26.1582, -58.1867, 2),
 (18, 10, 'Ayacucho - Av. Nicolas Avellaneda', -26.2038, -58.2099, 3),
-(20, 25, 'VIcente Solano LIma - Raúl Alfonsin', -26.1436, -58.1507, 4),
-(22, 2, 'csad', -26.1626, -58.1889, 2);
+(25, 5, 'Yrigoyen - Fontana', -26.1882, -58.1719, 4);
 
 -- --------------------------------------------------------
 
@@ -270,8 +268,38 @@ CREATE TABLE `mensajes` (
   `usuarios_idusuario` int(11) NOT NULL,
   `usuarioMando` int(11) NOT NULL,
   `contenido` longtext NOT NULL,
-  `fechaMensaje` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `fechaMensaje` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `noticias`
+--
+
+CREATE TABLE `noticias` (
+  `idNoticia` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `tituloNoti` varchar(244) NOT NULL,
+  `imagen` longtext NOT NULL,
+  `descripcion` text NOT NULL,
+  `link` longtext NOT NULL,
+  `dateNoti` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `noticias`
+--
+
+INSERT INTO `noticias` (`idNoticia`, `idUsuario`, `tituloNoti`, `imagen`, `descripcion`, `link`, `dateNoti`) VALUES
+(1, 9, 'Nueve de cada diez argentinos consideran que reciclar debe ser obligatorio', 'img/imagenesNoticias/0037198943.jpg', 'Así lo determina una nueva investigación sobre la temática. El 95% de los encuestados coincide en que en la escuela ...', 'https://www.ambito.com/informacion-general/reciclaje/nueve-cada-diez-argentinos-consideran-que-reciclar-debe-ser-obligatorio-n5069132', '2019-12-10 14:36:37'),
+(2, 9, '\'Navegando\', el proyecto con el que se fomenta el reciclaje en un colegio de Galicia', 'img/imagenesNoticias/cole-t.jpg', 'Una bonita iniciativa del Colegio Público Rural Jorge Juan de Xuvia para que los niños tomen conciencia de la importancia ...', 'https://www.hola.com/estar-bien/20191210155129/reciclaje-plastico-proyecto-colegio-galicia-gt/', '2019-12-10 14:34:57'),
+(3, 9, '¿Qué países son líderes mundiales en reciclaje?¿En qué lugar está España?', 'img/imagenesNoticias/Reciclaje-botella-contenedor-iStock.jpg', 'Con el paso de los años nos hemos ido concienciando de la importancia del reciclaje para la preservación...', 'https://ecodiario.eleconomista.es/viralplus/noticias/10244266/12/19/que-paises-son-lideres-mundiales-en-reciclajeen-que-lugar-esta-espana.html', '2019-12-10 14:40:34'),
+(4, 9, 'Música de reciclaje en el Teatro Real junto a Luz Casal y Sara Baras', 'img/imagenesNoticias/img_npalou_20191209-125016_imagenes_lv_otras_fuentes_foto_cateura-kB6G-U472131756765XLC-992x558@LaVanguardia-Web.jpg', 'Un año más, la Orquesta de Instrumentos Reciclados de Cateura se subirá a las tablas del Teatro Real de Madrid en su ya tradicional concierto navideño solidarioLos integrantes de la formación paraguaya son jóvenes de entre 11 y 25 años en riesgo de exclusión provenientes de Cateura, el vertedero más grande de la ciudad de Asunción,', 'https://www.lavanguardia.com/natural/20191209/472131756765/musica-reciclaje-orquestra-instrumentos-reciclados-cateura-concierto-madrid-ecoembes.html', '2019-12-10 14:48:15'),
+(5, 9, 'Bares italianos utilizam macarrões como canudos para reduzir o uso de plástico', 'img/imagenesNoticias/stroodles2.jpg', '¡Y aquí va otra opción para reemplazar pajillas de plástico completamente innovadoras! Los bares en Italia decidieron usar la opción de paja no menos que el ingrediente más famoso cuando recordamos Italia: ¡la pasta!', 'https://www.revistacarpediem.com/bares-italianos-utilizam-macarroes-como-canudos-para-reduzir-o-uso-de-plastico/?fbclid=IwAR1s3W31zby8hMg94Fkbis7eMb-WhIcXartPHp8VT_R-0QmrHV4huD87vus', '2019-12-10 15:04:23'),
+(6, 9, 'La máquina hace jugo y vasos hechos con cáscaras de naranja', 'img/imagenesNoticias/maquina-de-laranja-gigante.webp', 'Desde el jugo hasta la piel de naranja, no se desperdicia nada en la máquina de jugo diseñada por la oficina de diseño e innovación Carlo Ratti Associati en asociación con ENI. El dispositivo es un buen ejemplo de economía circular y cero desperdicio que los clientes pueden monitorear de cerca.', 'https://ciclovivo.com.br/inovacao/negocios/suco-copos-cascas-laranja/?fbclid=IwAR0krsUVK00SI2EGYXaWOwJ5gDa36DxGbxmJJ638XwJa9Tfct6GjijDEL0E', '2019-12-10 15:10:02'),
+(7, 9, 'Se inauguró en Argentina la primera casa construida con ladrillos de plástico reciclado', 'img/imagenesNoticias/casa-de-ladrillos-PET-1920-1-1024x575.webp', 'Ocurrió en Junín de Mendoza, y es la primera de varias viviendas ecológicas que se construirán en dicha ciudad', 'https://www.infobae.com/sociedad/2017/03/13/se-inauguro-en-argentina-la-primera-casa-construida-con-ladrillos-de-plastico-reciclado/?fbclid=IwAR2oilGBCIqasQNa943HOTJApXBDL1hVMLbGr-X46Habo2jtiZRVVPnB8Co', '2019-12-10 15:11:59'),
+(8, 9, 'Mantarrayas y tiburones ballena comen 63 piezas de plástico por hora en Indonesia, según un estudio', 'img/imagenesNoticias/manta6ball.jpg', 'Cada año, se arrojan al océano unos 5,25 billones de piezas nuevas de desechos plásticos, que incluyen 564 mil millones de botellas de agua y más de 500 mil millones de bolsas de plástico.', 'http://www.upsocl.com/verde/mantarrayas-y-tiburones-ballena-comen-63-piezas-de-plastico-por-hora-en-indonesia-segun-un-estudio/?fbclid=IwAR3_rzzKzlxlylXGV2zSat0kZoK7YnsQ6mPyuVqblG5lqNuC7vAUWS1Vw08', '2019-12-10 15:14:42');
 
 -- --------------------------------------------------------
 
@@ -312,7 +340,11 @@ INSERT INTO `perfil` (`idperfil`, `idUsuario`, `myLat`, `myLng`, `fotoPerfil`, `
 (5, 5, 0, 0, 'img/imagenesPerfil/Boca_escudo.png', 'Javier Alejandro Sanchez'),
 (6, 6, 0, 0, 'img/imagenesPerfil/12.jpg', 'Adrian'),
 (7, 7, 0, 0, 'img/imagenesPerfil/sidebar_usuario-corporativo.png', 'Usuario'),
-(8, 8, -26.1458, -58.1508, 'img/imagenesPerfil/excelentes seres humanos.jpg', 'Soy Un Coso de Prueba');
+(8, 8, -26.1458, -58.1508, 'img/imagenesPerfil/excelentes seres humanos.jpg', 'Soy Un Coso de Prueba'),
+(9, 9, -26.1795, -58.1859, 'img/imagenesPerfil/aprender-a-reciclar-1024x620.jpg', 'Reciclador Amigo'),
+(10, 10, -26.0804, -58.2719, 'img/imagenesPerfil/casa-de-ladrillos-PET-1920-1-1024x575.webp', 'Fulana De tal'),
+(11, 11, -26.0815, -58.2757, 'img/imagenesPerfil/maquina-de-laranja-gigante.webp', 'Hola Mundo'),
+(12, 12, -26.0809, -58.2744, 'img/imagenesPerfil/stroodles2.jpg', 'Sanchez Fredy');
 
 -- --------------------------------------------------------
 
@@ -346,8 +378,15 @@ CREATE TABLE `publicaciones` (
   `contenidoPublicacion` longtext NOT NULL,
   `fotoPublicacion` varchar(444) NOT NULL,
   `num_likes` int(11) NOT NULL,
-  `fechaPublicacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `fechaPublicacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `publicaciones`
+--
+
+INSERT INTO `publicaciones` (`idpublicacion`, `idUserPublico`, `contenidoPublicacion`, `fotoPublicacion`, `num_likes`, `fechaPublicacion`) VALUES
+(2, 2, 'Me sobran botellas. Alguien necesita?', 'img/imagenesPublicaciones/botellas plasticas.jpg', 0, '2019-12-10 19:44:54');
 
 -- --------------------------------------------------------
 
@@ -447,7 +486,7 @@ CREATE TABLE `usuarios` (
   `correo` varchar(100) NOT NULL,
   `usuario` varchar(50) NOT NULL,
   `contrasena` varchar(255) NOT NULL,
-  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -461,7 +500,11 @@ INSERT INTO `usuarios` (`idusuario`, `idPrivilegio`, `correo`, `usuario`, `contr
 (5, 2, 'ale@sanchez.com', 'Ale', '$2y$10$i6p6HikNcUnS9/ULe4Knw.Aov4ZvKQNvLLSIYwZvmjmynPmE92qcS', '2019-12-08 15:15:57'),
 (6, 2, 'coso@coso.com', 'coso', '$2y$10$qnvqiPVwNWnG5R5IcBUGX.wL5dm4TvZrm1r/NFtwNZcHb7A57t.P6', '2019-12-08 15:15:57'),
 (7, 2, 'usuario1@yahoo.com', 'Usuario', '$2y$10$tBfYFl2.HdAbcpRFwk4PieL33ic60RSXmOmQchHIwoaonki71unWq', '2019-12-08 15:15:57'),
-(8, 3, 'prueba@prueba.com', 'prueba', '$2y$10$KaGkwfP9sSSXpWFEYvguZOP9VMS.jjfwS3p.TzsKG/bdIVC6yg5z2', '2019-12-09 05:30:53');
+(8, 3, 'prueba@prueba.com', 'prueba', '$2y$10$KaGkwfP9sSSXpWFEYvguZOP9VMS.jjfwS3p.TzsKG/bdIVC6yg5z2', '2019-12-09 05:30:53'),
+(9, 3, 'reciclador@coso.com', 'Reciclador', '$2y$10$vEazLZwDpBUEcX9Od5QfteRIg.RHgWudW8U0t3ZxCFA7dfgLpsXnO', '2019-12-10 12:57:21'),
+(10, 3, 'fulan@gmail.com', 'fulana', '$2y$10$VPz4lNsidD8plrFxM7QVC.EphJ7uOjexu5D3yyKDW.COUJ0awtD7m', '2019-12-10 18:38:58'),
+(11, 3, 'hola@gmail.com', 'hola', '$2y$10$EBlTKTG07WJvidaw9m8/ZeIJtOoegRW31o6NCPgjAq0AGDRCG7kcW', '2019-12-10 19:17:32'),
+(12, 3, 'fredy@gmail.com', 'Fredy', '$2y$10$L0QDW7kiS7qAE.hV4n/cQeyC4D16ETNPEfQrE3kDVRfbMTUIrBSua', '2019-12-10 19:38:30');
 
 --
 -- Índices para tablas volcadas
@@ -523,6 +566,12 @@ ALTER TABLE `likes`
 ALTER TABLE `mensajes`
   ADD PRIMARY KEY (`idmensaje`),
   ADD KEY `fk_mensajes_usuarios1_idx` (`usuarios_idusuario`);
+
+--
+-- Indices de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  ADD PRIMARY KEY (`idNoticia`);
 
 --
 -- Indices de la tabla `notificaciones`
@@ -593,103 +642,91 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `barrios`
   MODIFY `idBarrio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
-
 --
 -- AUTO_INCREMENT de la tabla `centroreciclaje`
 --
 ALTER TABLE `centroreciclaje`
-  MODIFY `IdCentroReciclaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `IdCentroReciclaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   MODIFY `idcomentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `contenedores`
 --
 ALTER TABLE `contenedores`
-  MODIFY `idCont` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
+  MODIFY `idCont` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT de la tabla `dias`
 --
 ALTER TABLE `dias`
   MODIFY `idDia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
   MODIFY `idHorario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
 --
 -- AUTO_INCREMENT de la tabla `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `idlike` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
+  MODIFY `idlike` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `idmensaje` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `idmensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT de la tabla `noticias`
+--
+ALTER TABLE `noticias`
+  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `idnotificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
+  MODIFY `idnotificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
 ALTER TABLE `perfil`
-  MODIFY `idperfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+  MODIFY `idperfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `privilegios`
 --
 ALTER TABLE `privilegios`
   MODIFY `idPerfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `publicaciones`
 --
 ALTER TABLE `publicaciones`
-  MODIFY `idpublicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+  MODIFY `idpublicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipocontenedor`
 --
 ALTER TABLE `tipocontenedor`
   MODIFY `idTipoCont` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT de la tabla `tiporeciclador`
 --
 ALTER TABLE `tiporeciclador`
   MODIFY `idTipoReciclador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT de la tabla `tiporesiduos`
 --
 ALTER TABLE `tiporesiduos`
   MODIFY `IdTipoResiduos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT de la tabla `tiposnotificaciones`
 --
 ALTER TABLE `tiposnotificaciones`
   MODIFY `idtiposNotificaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Restricciones para tablas volcadas
 --
@@ -753,7 +790,6 @@ ALTER TABLE `publicaciones`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `priviUser` FOREIGN KEY (`idPrivilegio`) REFERENCES `privilegios` (`idPerfil`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

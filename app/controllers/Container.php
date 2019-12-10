@@ -23,6 +23,8 @@ class Container extends Controller{
             $cantidadUsuarios = $this->usuario->getCantidadUsuarios();
             $marcadores = $this->contenedor->getMarcadores();
             $infoMarkers = $this->contenedor->getInfoMarkers();
+            $tiposResiduo = $this->contenedor->getTypeResiduos();
+            $barrios = $this->contenedor->getBarrios();
 
 
             if ($datosPerfil) {
@@ -35,6 +37,8 @@ class Container extends Controller{
                     'cantidadUsuarios' => $cantidadUsuarios,
                     'marcadores' => $marcadores,
                     'infoMarkers' => $infoMarkers,
+                    'tiposResiduo' => $tiposResiduo,
+                    'barrios' => $barrios,
                 ];
                 $this->view('pages/contenedores/contenedores', $datosRed);
             } else {
@@ -43,6 +47,22 @@ class Container extends Controller{
         }
     }
     
-    
+    public function addContainer()
+    {
+
+        $datos = [
+            'idBarrio' => trim($_POST['selectBarrio']),
+            'direccion' => trim($_POST['addressCont']),
+            'latCont' => trim($_POST['containerLat']),
+            'lngCont' => trim($_POST['containerLng']),
+            'tipoCont' => trim($_POST['tipoCont']),
+        ];
+
+        if ($this->contenedor->insertarContainer($datos)) {
+            redirection('/container/contenedores');
+        } else {
+            echo 'El perfil no se ha guardado';
+        }
+    }
 
 }

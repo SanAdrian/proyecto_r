@@ -27,6 +27,8 @@ class Test
             $infoMarkers = $this->contenedor->getInfoMarkers();
             $tiposUser = $this->usuario->getTypeUsers();
             $tiposReciclador = $this->usuario->getTypeRecycler();
+            $tiposResiduo = $this->contenedor->getTypeResiduos();
+            $barrios = $this->contenedor->getBarrios();
 
 
             if ($datosPerfil) {
@@ -41,6 +43,8 @@ class Test
                     'infoMarkers' => $infoMarkers,
                     'tiposUser' => $tiposUser,
                     'tiposReciclador' => $tiposReciclador,
+                    'tiposResiduo' => $tiposResiduo,
+                    'barrios' => $barrios,
                 ];
                 $this->view('pages/test/test', $datosRed);
             } else {

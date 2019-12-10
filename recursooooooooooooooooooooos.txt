@@ -1,4 +1,6 @@
-API key:AIzaSyCySv0nSZn3vyrRm0pVH-nCikzaaX8sQS0
+Google API key:AIzaSyCySv0nSZn3vyrRm0pVH-nCikzaaX8sQS0
 coordenada centro ciudad de Formosa: -26.177798, -58.179822
 verde claro: rgb(139, 190, 34)
 verde oscuro: rgb(76, 144, 51)
+
+Here Geocode API Key: jLvVr3awcZ7YiX7TMLwxrlMLH8lRNpd6zuz-N8PB0aM
